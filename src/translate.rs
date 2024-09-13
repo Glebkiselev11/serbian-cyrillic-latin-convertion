@@ -72,22 +72,6 @@ impl SerbianCyrillic {
         .collect()
     }
 
-    pub fn from_latin(latin: &str) -> String {
-        let dict = Self::get_lat_to_cyr_dictionary();
-
-        let splitted_latin: Vec<String> = Self::split_latin(&latin);
-
-        let mut cyrillic = String::new();
-        for grapheme in splitted_latin.iter() {
-            match dict.get(grapheme as &str) {
-                Some(cyr) => cyrillic.push_str(cyr),
-                None => cyrillic.push_str(grapheme),
-            }
-        }
-
-        cyrillic
-    }
-
     fn split_latin(text: &str) -> Vec<String> {
         let dict = Self::get_lat_to_cyr_dictionary();
         // for example we have serbian "njegov čaj"
@@ -121,6 +105,44 @@ impl SerbianCyrillic {
 
         letters_with_combinations
     }
+
+    pub fn from_latin(latin: &str) -> String {
+        let dict = Self::get_lat_to_cyr_dictionary();
+
+        let splitted_latin: Vec<String> = Self::split_latin(&latin);
+
+        let mut cyrillic = String::new();
+        for grapheme in splitted_latin.iter() {
+            match dict.get(grapheme as &str) {
+                Some(cyr) => cyrillic.push_str(cyr),
+                None => cyrillic.push_str(grapheme),
+            }
+        }
+
+        cyrillic
+    }
+
+    pub fn from_cyrillic(cyrillic: &str) -> String {
+        let dict = Self::get_lat_to_cyr_dictionary();
+
+        let mut latin = String::new();
+        for grapheme in cyrillic.graphemes(true) {
+            let mut found = false;
+            for (lat, cyr) in dict.iter() {
+                if cyr == &grapheme {
+                    latin.push_str(lat);
+                    found = true;
+                    break;
+                }
+            }
+
+            if !found {
+                latin.push_str(grapheme);
+            }
+        }
+
+        latin
+    }
 }
 
 #[cfg(test)]
@@ -143,5 +165,23 @@ mod tests {
 
         let cyrillic = SerbianCyrillic::from_latin("");
         assert_eq!(cyrillic, "");
+    }
+
+    #[test]
+    fn test_from_cyrillic() {
+        let latin = SerbianCyrillic::from_cyrillic("његов чај");
+        assert_eq!(latin, "njegov čaj");
+
+        let latin = SerbianCyrillic::from_cyrillic("живот и прикључења");
+        assert_eq!(latin, "život i priključenja");
+
+        let latin = SerbianCyrillic::from_cyrillic("љуља се љуљашка");
+        assert_eq!(latin, "ljulja se ljuljaška");
+
+        let latin = SerbianCyrillic::from_cyrillic("џеп пун пара?");
+        assert_eq!(latin, "džep pun para?");
+
+        let latin = SerbianCyrillic::from_cyrillic("");
+        assert_eq!(latin, "");
     }
 }
