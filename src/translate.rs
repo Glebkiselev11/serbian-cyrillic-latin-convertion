@@ -1,9 +1,9 @@
 use std::collections::HashMap;
 use unicode_segmentation::UnicodeSegmentation;
 
-pub struct SerbianCyrillic {}
+pub struct SerbianTranslation {}
 
-impl SerbianCyrillic {
+impl SerbianTranslation {
     fn get_lat_to_cyr_dictionary() -> HashMap<&'static str, &'static str> {
         [
             ("A", "А"),
@@ -147,41 +147,41 @@ impl SerbianCyrillic {
 
 #[cfg(test)]
 mod tests {
-    use super::SerbianCyrillic;
+    use super::SerbianTranslation;
 
     #[test]
     fn test_from_latin() {
-        let cyrillic = SerbianCyrillic::from_latin("njegov čaj");
+        let cyrillic = SerbianTranslation::from_latin("njegov čaj");
         assert_eq!(cyrillic, "његов чај");
 
-        let cyrillic = SerbianCyrillic::from_latin("život i priključenja");
+        let cyrillic = SerbianTranslation::from_latin("život i priključenja");
         assert_eq!(cyrillic, "живот и прикључења");
 
-        let cyrillic = SerbianCyrillic::from_latin("ljulja se ljuljaška");
+        let cyrillic = SerbianTranslation::from_latin("ljulja se ljuljaška");
         assert_eq!(cyrillic, "љуља се љуљашка");
 
-        let cyrillic = SerbianCyrillic::from_latin("džep pun para?");
+        let cyrillic = SerbianTranslation::from_latin("džep pun para?");
         assert_eq!(cyrillic, "џеп пун пара?");
 
-        let cyrillic = SerbianCyrillic::from_latin("");
+        let cyrillic = SerbianTranslation::from_latin("");
         assert_eq!(cyrillic, "");
     }
 
     #[test]
     fn test_from_cyrillic() {
-        let latin = SerbianCyrillic::from_cyrillic("његов чај");
+        let latin = SerbianTranslation::from_cyrillic("његов чај");
         assert_eq!(latin, "njegov čaj");
 
-        let latin = SerbianCyrillic::from_cyrillic("живот и прикључења");
+        let latin = SerbianTranslation::from_cyrillic("живот и прикључења");
         assert_eq!(latin, "život i priključenja");
 
-        let latin = SerbianCyrillic::from_cyrillic("љуља се љуљашка");
+        let latin = SerbianTranslation::from_cyrillic("љуља се љуљашка");
         assert_eq!(latin, "ljulja se ljuljaška");
 
-        let latin = SerbianCyrillic::from_cyrillic("џеп пун пара?");
+        let latin = SerbianTranslation::from_cyrillic("џеп пун пара?");
         assert_eq!(latin, "džep pun para?");
 
-        let latin = SerbianCyrillic::from_cyrillic("");
+        let latin = SerbianTranslation::from_cyrillic("");
         assert_eq!(latin, "");
     }
 }

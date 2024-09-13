@@ -1,8 +1,8 @@
-use translate::SerbianCyrillic;
+use translate::SerbianTranslation;
 
 mod translate;
 
 fn main() {
-    println!("{}", SerbianCyrillic::from_latin("njegov čaj"));
-    println!("{}", SerbianCyrillic::from_cyrillic("његов чај"));
+    println!("{}", SerbianTranslation::from_latin("njegov čaj"));
+    println!("{}", SerbianTranslation::from_cyrillic("његов чај"));
 }
