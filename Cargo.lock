@@ -3,8 +3,8 @@
 version = 3
 
 [[package]]
-name = "serbian-cyrillic-latin-conversion-lib"
-version = "1.0.0"
+name = "serbian-cyrillic-latin-conversion"
+version = "1.0.1"
 dependencies = [
  "unicode-segmentation",
 ]
