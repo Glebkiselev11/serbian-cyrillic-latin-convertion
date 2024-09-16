@@ -1,6 +1,6 @@
 [package]
 name = "serbian-cyrillic-latin-conversion"
-version = "1.0.1"
+version = "1.0.2"
 edition = "2021"
 authors = ["Gleb Kiselev"]
 description = "Serbian Cyrillic to Latin and Latin to Cyrillic conversion library"

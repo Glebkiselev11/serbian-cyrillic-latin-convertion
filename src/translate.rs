@@ -106,6 +106,7 @@ impl Convertion {
         letters_with_combinations
     }
 
+    /// Convert latin text to cyrillic
     pub fn from_latin(latin: &str) -> String {
         let dict = Self::get_lat_to_cyr_dictionary();
 
@@ -122,6 +123,7 @@ impl Convertion {
         cyrillic
     }
 
+    /// Convert cyrillic text to latin
     pub fn from_cyrillic(cyrillic: &str) -> String {
         let dict = Self::get_lat_to_cyr_dictionary();
 
