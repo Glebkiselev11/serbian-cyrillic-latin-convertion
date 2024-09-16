@@ -1,3 +1,3 @@
 mod translate;
 
-pub use translate::SerbianTranslation;
+pub use translate::Convertion;
