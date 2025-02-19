@@ -1,6 +1,6 @@
 [package]
 name = "serbian-cyrillic-latin-conversion"
-version = "1.0.2"
+version = "1.0.7"
 edition = "2021"
 authors = ["Gleb Kiselev"]
 description = "Serbian Cyrillic to Latin and Latin to Cyrillic conversion library"
@@ -9,5 +9,9 @@ repository = "https://github.com/Glebkiselev11/serbian-cyrillic-latin-convertion
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [dependencies]
 unicode-segmentation = "1.10.1"
+wasm-bindgen = "0.2"
